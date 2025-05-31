@@ -1,0 +1,32 @@
+package vn.fpoly.java5.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+@Controller
+public class ProductController {
+    @GetMapping("/products/{size}/{number}")
+    public String product(@PathVariable("size") int pageSize, @PathVariable("number") int pageNumber) {
+        System.out.println("pageSize: " + pageSize);
+        System.out.println("pageNumber: " + pageNumber);
+        return "/product/product-list";
+    }
+
+    @GetMapping("/categories")
+    public String categories(Model model) {
+        Map<String, String> categories = new LinkedHashMap<>();
+        categories.put("1", "Category 1");
+        categories.put("2", "Category 2");
+        categories.put("3", "Category 3");
+        categories.put("4", "Category 4");
+        model.addAttribute("categories", categories);
+        model.addAttribute("selectedId", "3");
+        return "/product/categories";
+    }
+}
