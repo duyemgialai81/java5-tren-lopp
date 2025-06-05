@@ -18,22 +18,24 @@
           <h2>đăng ký tài khoản</h2>
         </div>
         <div class="card-body">
-          <form th:action="@{/create-student}" th:object="${student}" method="post">
+          <form th:action="@{/student/create-student}" th:object="${student}" method="post">
             <div class="mb-3">
               <label>Mã Sinh viên</label>
-              <input type="number" id="id" name="id" th:field="*{id}" class="form-control" required>
+              <input type="number" id="id" name="id" th:field="*{id}" class="form-control" >
+              <div class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
             </div>
             <div class="mb-3">
               <label>Họ Và Tên</label>
-              <input type="number" id="name" name="id" th:field="*{name}" class="form-control" required>
+              <input type="number" id="name" name="id" th:field="*{name}" class="form-control" >
+              <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
             </div>
             <div class="mb-3">
-              <input th:field="${gender}" type="radio" value="true"><span>Nam</span>
-              <input th:field="${gender}" type="radio" value="false"><span>Nữ</span>
+              <input th:field="*{gender}" type="radio" value="true"><span>Nam</span>
+              <input th:field="*{gender}" type="radio" value="false"><span>Nữ</span>
             </div>
             <div class="mb-3">
               <label>Ngày sinh</label>
-              <input type="number" id="birthday" name="id" th:field="*{birthday}" class="form-control" required>
+              <input type="number" id="birthday" name="id" th:field="*{birthday}" class="form-control" >
             </div>
             <div class="mb-3">
               <input th:field="*{status}" type="radio" value="0"> <span>đang học</span>

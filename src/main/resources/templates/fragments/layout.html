@@ -1,0 +1,18 @@
+<html th:fragment="View(title, content)" lang="vi">
+<head>
+    <title th:replace="${title}">title</title>
+</head>
+<body>
+<header>
+    <h1>FPL Polytechnic</h1>
+    <nav th:replace="fragments/menu :: menu">Menu</nav>
+</header>
+<article th:replace="${content}">
+
+</article>
+<footer>
+    <hr>
+    @ 2025 . All Righs Reserver
+</footer>
+</body>
+</html>

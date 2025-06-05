@@ -1,7 +1,9 @@
 package vn.fpoly.java5.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,9 +71,13 @@ public class StudentController {
         return "/student/create-student";
     }
     @PostMapping("/create-student")
-    public String createStudent(Student student){
-        System.out.println("Id:" + student.getId());
-        System.out.println("name:" + student.getName());
+    public String createStudent(@ModelAttribute @Valid Student student, Errors errors, Model model){
+        if (errors.hasErrors()){
+            model.addAttribute("eros", "Dữ Liệu Khng Hợp Lệ");
+            return "/student/create-student";
+        }else {
+            repo.save(student);
+        }
         return "/student/student-list";
     }
 }
